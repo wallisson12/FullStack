@@ -1,0 +1,61 @@
+-->	Cria um banco de dados
+Create Database "NomeBanco";
+
+--> Cria uma tabela e ja coloca seus parametros
+create table tbCliente
+(
+	CPF varchar(11),  Ex: Se eu colocar 'Null', permite que esse campo pode ser nulo
+	Nome varchar(100),
+    Endereco1 varchar(150),
+    Endereco2 varchar(150),
+    Bairro varchar(50),
+    Cidade varchar(50),
+    Estado varchar(50),
+    CEP varchar(8),
+    Idade smallint,
+    Sexo varchar(1),
+    Limite_Credito float,
+    Volume_Compra float,
+    Primeira_Compra bit(1)
+);
+
+--> Insere dados na tabela em suas colunas
+insert into tbProdutos
+(Produto,Nome,Embalagem,Tamanho,Sabor,Preco_Lista)
+values
+('1040107','Light-350ml-melancia','Lata','350ml','Melancia',4.56);
+
+--> Atualiza um registro de uma tabela
+Update tbProdutos set Embalagem = 'Lata', Preco_Lista = 2.46
+where Produto = '544931';
+
+--> Agapa um registro da tabela
+delete from tbProdutos where Produto = '1078680';
+
+--> Tras todos os registros da tabela 
+Select * from "NomeTabela";
+
+--> Apaga o banco de dados
+Drop Database "NomeBanco";
+
+--> Apaga a tabela
+Drop table "NomeTabela";
+
+--> Altera a tabela e adciona uma chave primaria na coluna 'Produto'
+alter table tbProdutos add primary key (Produto);
+
+--> Altera a tabela e adciona uma coluna, especificando nome e tipo
+alter table "NomeTabela" add column("NomeColuna" tipo);
+
+--> Seleciona todos os campos mas limitando a 5 clientes
+select * from tbCliente limit 5;
+
+--> Seleciona todos os campos mas com um ano especifico
+select * from tbVendedores where Year(Data_Admissao) = '2016';
+
+
+--> Seleciona todos os campos mas com um Mes especifico
+select * from tbVendedores where Month(Data_Admissao) = '2016';
+
+
+**COMANDOS AVANCADOS**
