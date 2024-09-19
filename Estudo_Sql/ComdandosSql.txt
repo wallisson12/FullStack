@@ -1,61 +1,112 @@
--->	Cria um banco de dados
-Create Database "NomeBanco";
+*Criacao
 
---> Cria uma tabela e ja coloca seus parametros
-create table tbCliente
-(
-	CPF varchar(11),  Ex: Se eu colocar 'Null', permite que esse campo pode ser nulo
-	Nome varchar(100),
-    Endereco1 varchar(150),
-    Endereco2 varchar(150),
-    Bairro varchar(50),
-    Cidade varchar(50),
-    Estado varchar(50),
-    CEP varchar(8),
-    Idade smallint,
-    Sexo varchar(1),
-    Limite_Credito float,
-    Volume_Compra float,
-    Primeira_Compra bit(1)
-);
+    -->	Cria um banco de dados
+    Create Database "NomeBanco";
+
+    --> Cria uma tabela e ja coloca seus parametros
+
+        create table tbCliente
+        (
+            CPF varchar(11),  Ex: Se eu colocar 'Null', permite que esse campo pode ser nulo
+            Nome varchar(100),
+            Endereco1 varchar(150),
+            Endereco2 varchar(150),
+            Bairro varchar(50),
+            Cidade varchar(50),
+            Estado varchar(50),
+            CEP varchar(8),
+            Idade smallint,
+            Sexo varchar(1),
+            Limite_Credito float,
+            Volume_Compra float,
+            Primeira_Compra bit(1)
+        );
 
 --> Insere dados na tabela em suas colunas
-insert into tbProdutos
-(Produto,Nome,Embalagem,Tamanho,Sabor,Preco_Lista)
-values
-('1040107','Light-350ml-melancia','Lata','350ml','Melancia',4.56);
+    
+    insert into tbProdutos
+        (Produto,Nome,Embalagem,Tamanho,Sabor,Preco_Lista)
+    values
+        ('1040107','Light-350ml-melancia','Lata','350ml','Melancia',4.56);
 
 --> Atualiza um registro de uma tabela
-Update tbProdutos set Embalagem = 'Lata', Preco_Lista = 2.46
-where Produto = '544931';
+    
+    Update tbProdutos set Embalagem = 'Lata', Preco_Lista = 2.46
+        where Produto = '544931';
 
---> Agapa um registro da tabela
-delete from tbProdutos where Produto = '1078680';
+*Apaga
 
---> Tras todos os registros da tabela 
-Select * from "NomeTabela";
-
---> Apaga o banco de dados
-Drop Database "NomeBanco";
-
---> Apaga a tabela
-Drop table "NomeTabela";
-
---> Altera a tabela e adciona uma chave primaria na coluna 'Produto'
-alter table tbProdutos add primary key (Produto);
-
---> Altera a tabela e adciona uma coluna, especificando nome e tipo
-alter table "NomeTabela" add column("NomeColuna" tipo);
-
---> Seleciona todos os campos mas limitando a 5 clientes
-select * from tbCliente limit 5;
-
---> Seleciona todos os campos mas com um ano especifico
-select * from tbVendedores where Year(Data_Admissao) = '2016';
+    --> Agapa um registro da tabela
+        
+        delete from tbProdutos where Produto = '1078680';
 
 
---> Seleciona todos os campos mas com um Mes especifico
-select * from tbVendedores where Month(Data_Admissao) = '2016';
+    --> Apaga o banco de dados
+        
+        Drop Database "NomeBanco";
+
+    --> Apaga a tabela
+        
+        Drop table "NomeTabela";
+
+*Altera
+
+    --> Altera a tabela e adciona uma chave primaria na coluna 'Produto'
+        
+        alter table tbProdutos add primary key (Produto);
+
+    --> Altera a tabela e adciona uma coluna, especificando nome e tipo
+        
+        alter table "NomeTabela" add column("NomeColuna" tipo);
+
+*Selecao
+
+    --> Tras todos os registros da tabela 
+        
+        Select * from "NomeTabela";
+
+    --> Seleciona todos os campos mas limitando a 5 clientes
+        
+        select * from tbCliente limit 5;
+
+    --> Seleciona todos os campos mas com um ano especifico
+        
+        select * from tbVendedores where Year(Data_Admissao) = '2016';
+
+    --> Seleciona todos os campos mas com um Mes especifico
+
+        select * from tbVendedores where Month(Data_Admissao) = '2016';
+
+    --> Seleciona todos os campos e verifica se esta de ferias ou foi admitido depois de 2016
+
+        select * from tbVendedores where De_Ferias = "Sim" or Year(Data_Admissao) > '2016';
+
+    --> Seleciona todos os campos e tras o sabor seja "laranja" ou "manga"
+
+        select * from tbProdutos where Sabor in('Laranja','Manga');
+
+    --> Seleciona todo mundo que possua 'Silva no nome'
+        ('%Silva', que possua em alguma parte, '%Silva', que possua no final do nome)
+            
+            select * from tbCliente where Nome like '%Silva%';
+
 
 
 **COMANDOS AVANCADOS**
+
+    --> Comandos como, and, not(),or,Where. Sao usados para filtar
+
+    --> Comando 'Distinct', usado para trazer os que sao diferentes 
+
+            select distinct Embalagem, Tamanho from tbProdutos;
+            select distinct Bairro from tbCliente where Cidade = 'Rio de janeiro';
+
+    *Ordenando a saida
+
+            --> Comando 'Order By', faz a ordenacao da saida
+            --> A palavra 'DESC', inverte o padrao(ASC), para decresente
+
+                    select * from tbProdutos order by Preco_Lista;
+                    select * from tbProdutos order by Preco_Lista DESC; 
+                    select * from tbProdutos order by Embalagem ASC, Nome DESC;
+
