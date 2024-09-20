@@ -164,6 +164,11 @@
               on c.CPF = nf.CPF 
               where nf.CPF is null; 
 
+            select distinct c.CPF, c.Nome, nf.CPF from notas_fiscais nf
+            right join tabela_de_clientes c 
+            on  c.CPF = nf.CPF
+            where nf.CPF is null;       
+
             
 
 
