@@ -110,3 +110,61 @@
                     select * from tbProdutos order by Preco_Lista DESC; 
                     select * from tbProdutos order by Embalagem ASC, Nome DESC;
 
+    * Funcoes (Sum(),Max(),Min(),Avg(),Count())
+    *'Group by', vai agrupar a resposta, com os campos repetidos
+    * Quando utilizar uma funcao temos que utilizar um alias 'as';
+
+        select Estado, sum(Limite_Credito) as Limite_Total from tbCliente Group BY Estado;
+        select Embalagem,Max(Preco_De_Lista) as Maior_Preco from tbProdutos Group BY Embalagem;
+        select Embalagem,Count(*) as Contador from tbProdutos Group BY Embalagem;
+
+    * 'Having', Usado no resultado de agregacao, depois do 'group by'
+
+        select Estado, sum(Limite_Credito) as limite from tbCliente
+            group by Estado having sum(Limite_Credito) > 900000;
+
+        select EMBALAGEM, MAX(PRECO_DE_LISTA) AS MAIOR_PRECO, MIN(PRECO_DE_LISTA) AS MENOR_PRECO
+	        FROM tabela_de_produtos group by EMBALAGEM HAVING SUM(PRECO_DE_LISTA) <= 80;
+
+    * 'CASE'
+
+    select NOME_DO_PRODUTO, PRECO_DE_LISTA,
+        CASE 
+            WHEN PRECO_DE_LISTA >= 12 THEN 'PRODUTO CARO'
+            WHEN PRECO_DE_LISTA >= 7 AND PRECO_DE_LISTA < 12 THEN 'PRODUTO EM CONTA'
+            ELSE 'PRODUTO BARATO'
+        END AS Status_Preco
+    from tabela_de_produtos;
+
+
+    * Usandos os Joins
+
+        -Inner Join (Tras o centro da relacao entre tabelas)
+
+            select * from tabela_de_vendedores v
+                inner join notas_fiscais n
+	        on v.MATRICULA = n.MATRICULA;
+
+            select a.MATRICULA, a.Nome, count(*) from 
+            tabela_de_vendedores a
+            inner join notas_fiscais b
+            on a.MATRICULA = b.MATRICULA
+            group by a.MATRICULA, a.Nome;
+
+            select year(nf.Data_Venda), Sum(inf.Quantidade * inf.Preco) as Faturamento
+                from notas_fiscais nf inner join itens_notas_fiscais inf
+                on nf.Numero = inf.Numero
+                group by year(nf.Data_Venda);     
+
+
+        -Right e left join (tras todos de uma tabela e a relacao da outra)
+
+            select distinct c.CPF, c.Nome, nf.CPF from tabela_de_clientes c
+              left join notas_fiscais nf 
+              on c.CPF = nf.CPF 
+              where nf.CPF is null; 
+
+            
+
+
+              
