@@ -1,5 +1,9 @@
 **Comandos Basicos Do Docker**
 
+    --> Logar no docker hub
+
+            docker login
+
     --> Puxa do docker hub a imagem desejada 
             
             docker pull "Nome da imagem"
@@ -105,9 +109,32 @@
 
     --> Permite voce criar imagens
 
-    --> Vai fazer a construcao da imagem,(isso vai acontecer no diretorio atual)
+    --> Vai fazer a construcao da imagem,(isso vai acontecer no diretorio atual, onde esta a aplicação e o arquivo dockerfile) 
 
-            docker build -t "Nome da imagem" .
+            docker build -t "seu-usuario/seu-repositorio:tag" .
+
+
+*Exemplo
+
+    # Usando a imagem base do Node.js
+    FROM node:14
+
+    # Definindo o diretório de trabalho padrao, onde as acoes vao acontecer
+    WORKDIR /app
+
+    # Copiando o arquivo package.json e instalando dependências
+    COPY package*.json ./
+
+    RUN npm install
+
+    # Copiando o restante dos arquivos do host para a imagem
+    COPY . .
+
+    # Expondo a porta da aplicação onde esta sendo rodada
+    EXPOSE 3000
+
+    # Comando para rodar a aplicação
+    CMD ["npm", "start"]
 
 **Volume**
 
