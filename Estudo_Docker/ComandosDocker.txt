@@ -114,7 +114,7 @@
             docker build -t "seu-usuario/seu-repositorio:tag" .
 
 
-*Exemplo
+*Exemplo*
 
     # Usando a imagem base do Node.js
     FROM node:14
@@ -155,4 +155,39 @@
 
     --> No mesmo diretorio, ele faz a execucao do arquivo
 
-            docker compose up
+            docker-compose up
+
+    --> Para parar
+
+            docker-compose down
+
+*Exemplo*
+
+    # Especifica a versão do Docker Compose
+    version: '3'  
+
+    services:
+    web:  # Nome do serviço para o servidor web Nginx
+        image: nginx:latest  # Usando a imagem oficial do Nginx
+        ports:
+        - "8080:80"  # Mapear porta 8080 no host para 80 no container
+        volumes:
+        - ./app:/usr/share/nginx/html  # Sincroniza a pasta local `app` com o diretório do Nginx no container
+        depends_on:
+        - db  # O serviço `web` depende do `db` (MySQL)
+
+    db:  # Serviço de banco de dados MySQL
+        image: mysql:5.7  # Usando a imagem oficial do MySQL versão 5.7
+        environment:  # Variáveis de ambiente para configuração do MySQL
+        MYSQL_ROOT_PASSWORD: rootpassword  # Senha do usuário root
+        MYSQL_DATABASE: meu_banco  # Nome do banco de dados
+        MYSQL_USER: usuario  # Usuário adicional
+        MYSQL_PASSWORD: senha_usuario  # Senha do usuário adicional
+        ports:
+        - "3306:3306"  # Mapear porta 3306 no host para 3306 no container
+        volumes:
+        - db_data:/var/lib/mysql  # Volume para persistir dados do banco
+
+    # Definir volumes persistentes
+    volumes:
+    db_data:
