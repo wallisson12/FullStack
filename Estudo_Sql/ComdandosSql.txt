@@ -139,7 +139,7 @@
 
     * Usandos os Joins
 
-        -Inner Join (Tras o centro da relacao entre tabelas)
+        - Inner Join (Tras o centro da relacao entre tabelas)
 
             select * from tabela_de_vendedores v
                 inner join notas_fiscais n
@@ -157,7 +157,7 @@
                 group by year(nf.Data_Venda);     
 
 
-        -Right e left join (tras todos de uma tabela e a relacao da outra)
+        - Right e left join (tras todos de uma tabela e a relacao da outra)
 
             select distinct c.CPF, c.Nome, nf.CPF from tabela_de_clientes c
               left join notas_fiscais nf 
@@ -167,9 +167,56 @@
             select distinct c.CPF, c.Nome, nf.CPF from notas_fiscais nf
             right join tabela_de_clientes c 
             on  c.CPF = nf.CPF
-            where nf.CPF is null;       
+            where nf.CPF is null;
 
+        -Full joint
+
+          - O full Join eh tipo um right e left, mostrando os dois juntos
+          - Como no mysql ele nao suporta, podemos simular com o union
+    
+        - Cross Join,(Retorna o produto catersiano entre as tabelas)
+
+                select
+                    tabela_de_vendedores.BAIRRO as Bairro_Vendedores,
+                    tabela_de_vendedores.NOME as Nome_Vendedor,
+                    tabela_de_clientes.NOME as Nome_Clientes,
+                    tabela_de_clientes.BAIRRO as Bairro_Clientes
+                from tabela_de_vendedores, tabela_de_clientes
+
+        - Union, (Faz a juncao de consultas, tem que ser de mesmo tipo)
+        - Union all,(`````````````````````````````````````````````````, mas tras todos sem distinct)
+
+                select distinct BAIRRO from tabela_de_clientes
+                Union
+                select distinct BAIRRO from tabela_de_vendedores;
+
+                select distinct BAIRRO from tabela_de_clientes
+                Union
+                select distinct BAIRRO from tabela_de_vendedores;
             
+        - Subconsultas, sao consultas dentro de outra consulta
 
+                select * from tabela_de_clientes where BAIRRO in('Tijuca','Jardins','Copacabana','Santo Amaro');
+        
+        -Podemos mudar isso usando Subconsultas
 
-              
+                select * from tabela_de_clientes where BAIRRO 
+                    IN(SELECT BAIRRO FROM tabela_de_vendedores);
+
+                Select X.EMBALAGEM, X.Maior_Preco from 
+                (select EMBALAGEM, Max(PRECO_DE_LISTA) as Maior_Preco from tabela_de_produtos
+                    group by EMBALAGEM) X where X.Maior_Preco >= 10;      
+        
+        -View, uma forma de voce 'emcapsular' uma consulta, e pode usar ela em outros momentos
+
+                -Antes
+
+                    Select X.EMBALAGEM, X.Maior_Preco from 
+                    (select EMBALAGEM, Max(PRECO_DE_LISTA) as Maior_Preco from tabela_de_produtos
+                    group by EMBALAGEM) X where X.Maior_Preco >= 10;
+
+                -Depois
+
+                    Select X.EMBALAGEM, X.Maior_Preco from 
+                    Vw_Maiores_Embalagens X where X.Maior_Preco >= 10;
+                 
