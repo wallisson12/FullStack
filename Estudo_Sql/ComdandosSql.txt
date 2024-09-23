@@ -219,4 +219,60 @@
 
                     Select X.EMBALAGEM, X.Maior_Preco from 
                     Vw_Maiores_Embalagens X where X.Maior_Preco >= 10;
-                 
+
+                -Exemplo complexo
+
+                    select X.CPF,X.NOME,X.Mes_Ano,X.Quantidade_Venda,X.Quantidade_Limite,
+
+                        Case when (X.Quantidade_Limite - X.Quantidade_Venda) < 0 then 'Invalida'
+                            else 'Valida'
+                        end as Status_Venda
+    
+                    from    
+                        (select nf.CPF,tc.NOME,date_format(nf.DATA_VENDA,'%Y-%m') as Mes_ano
+                            ,Sum(inf.QUANTIDADE) as Quantidade_Venda
+                            ,Max(tc.VOLUME_DE_COMPRA) as Quantidade_Limite
+                            from notas_fiscais nf
+                            inner join itens_notas_fiscais inf
+                            on nf.NUMERO = inf.NUMERO
+                            inner join tabela_de_clientes tc 
+                                on tc.CPF = nf.CPF
+                                group by nf.CPF,tc.NOME,date_format(nf.DATA_VENDA,'%Y-%m')) X;
+
+
+                        select Vendas_Sabor.Sabor,Vendas_Sabor.Ano,Vendas_Sabor.Quantidade_Total,
+                            Round((Vendas_Sabor.Quantidade_Total/Vendas_Total.Quantidade_Total) * 100) as Participacao
+                    from      
+                        (select tp.SABOR,YEAR(nf.DATA_VENDA) as Ano,Sum(inf.QUANTIDADE) as Quantidade_Total from tabela_de_produtos tp
+                            inner join itens_notas_fiscais inf on tp.CODIGO_DO_PRODUTO = inf.CODIGO_DO_PRODUTO
+                            inner join notas_fiscais nf on nf.NUMERO = inf.NUMERO
+                            where Year(nf.DATA_VENDA) = 2016
+                            group by tp.SABOR,YEAR(nf.DATA_VENDA)) as Vendas_Sabor
+                            
+                    inner join
+
+                    (select YEAR(nf.DATA_VENDA) as Ano,Sum(inf.QUANTIDADE) as Quantidade_Total from tabela_de_produtos tp
+                        inner join itens_notas_fiscais inf on tp.CODIGO_DO_PRODUTO = inf.CODIGO_DO_PRODUTO
+                        inner join notas_fiscais nf on nf.NUMERO = inf.NUMERO
+                        where Year(nf.DATA_VENDA) = 2016
+                        group by YEAR(nf.DATA_VENDA)) as Vendas_Total
+                        
+                    on Vendas_Sabor.Ano = Vendas_Total.Ano
+                    order by Vendas_Sabor.Quantidade_Total Desc;
+
+    *Funcoes*
+
+        - Uma maneira de realizar uma acao;
+        - CurDate()
+        - current_timestamp()
+        - Year()
+        - MonthName()
+        - DayName()
+        - DateDiff()
+        - Round()
+        - Celling()
+        - Abs()
+        - Sqrt()
+        - Rand()
+        - Convert()
+        - Etc...    
