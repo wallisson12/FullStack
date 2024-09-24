@@ -58,6 +58,16 @@
     --> Altera a tabela e adciona uma coluna, especificando nome e tipo
         
         alter table "NomeTabela" add column("NomeColuna" tipo);
+    
+    --> Altera o nome da coluna da tabela
+        
+        alter table "Nome da tabela" rename column "Nome antigo" to "Nome novo";
+
+    --> Altera a tabela colocando a chave estrangeira
+
+        alter table "Nome da tabela" add constraint "Fk_Nome_da_chave"
+            foregin key("Campo que eh estrangeira") reference
+             "Nome da outra tabela" ("Campo a ser referenciado");
 
 *Selecao
 
@@ -275,4 +285,38 @@
         - Sqrt()
         - Rand()
         - Convert()
-        - Etc...    
+        - Etc...
+
+    *Transacao*
+
+     - Uma maneira de criar um ponto de estado no banco, tornando ele mais seguro
+     - A possiveis execucoes indesejadas no banco
+
+        start transaction; 
+
+        select * from tabela_de_vendedores;
+
+        update tabela_de_vendedores set PERCENTUAL_COMISSAO = PERCENTUAL_COMISSAO * 1.15;
+
+        - Volto ao estado do start
+            rollback;
+
+        - Comfirmo a opercao e vai ser salvo na base
+            commit; 
+
+
+    *Triggers*
+
+        - Eh um tipo gatilho, que eh acionado automaticamente quando um evento ocorre
+
+            delimiter //
+                    create trigger Tg_Calcula_Faturamento_Insert after insert on itens_notas_fiscais
+	                    for each row begin
+    
+                            DELETE FROM tabela_faturamento;
+                            insert into tabela_faturamento
+                                select nf.DATA_VENDA, sum(inf.QUANTIDADE * inf.PRECO) as Total_Venda from notas_fiscais nf 
+                                inner join itens_notas_fiscais inf
+                                on nf.NUMERO = inf.NUMERO
+                            group by DATA_VENDA;
+                        end//
