@@ -1,0 +1,27 @@
+**Comandos**
+
+    -->Executa um alert na pagina
+        
+        alert('Teste');
+    
+    --> 'document', Referencia todo o documento html, e busca o seletor desejado
+        
+        document.querySelector('Selector');
+
+    --> Vai buscar o seletor, achando vai executar a funcao play  
+
+        document.querySelector('Tag de audio').play();
+
+    --> Sintaxe de funcao em js
+
+        function NomeDaFuncao(){
+
+        }
+
+        obs: Pode ser adciona em uma variavel
+
+        let teste = funcion NomeDaFuncao(){};
+
+    --> Seleciona uma lista de seletores e retorna uma lista
+
+        document.querySelectorAll('selector');
