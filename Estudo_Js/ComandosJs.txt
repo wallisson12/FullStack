@@ -1,5 +1,9 @@
 **Comandos**
 
+    --> Para chamar o arquivo js no html, colocar no final da tag body
+
+        <script src="Nome Do Arquivo"></script>
+
     -->Executa um alert na pagina
         
         alert('Teste');
@@ -25,3 +29,7 @@
     --> Seleciona uma lista de seletores e retorna uma lista
 
         document.querySelectorAll('selector');
+
+    --> Acessa a classe do seletor, como se fosse um arry
+
+        document.querySelectorAll('selector').classList[Indice]
