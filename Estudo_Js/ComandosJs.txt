@@ -18,13 +18,20 @@
 
     --> Sintaxe de funcao em js
 
-        function NomeDaFuncao(){
+        function NomeDaFuncao()
+        {
 
         }
 
         obs: Pode ser adciona em uma variavel
 
         let teste = funcion NomeDaFuncao(){};
+
+    --> Funcao anonima, muito utilizada quando voce precisa passar para uma variavel a funcao com um
+        parametro, sem executar a funcao
+
+        funcion(){};
+
 
     --> Seleciona uma lista de seletores e retorna uma lista
 
