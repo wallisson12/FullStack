@@ -1,5 +1,10 @@
 **Comandos**
 
+    --> Delcaracao de variavel
+
+        let teste; //Servindo para ter uma variavel de bloco e com maior rotatividade
+        const teste2; //Servindo para nao ter variedade, eh uma constante
+
     --> Para chamar o arquivo js no html, colocar no final da tag body
 
         <script src="Nome Do Arquivo"></script>

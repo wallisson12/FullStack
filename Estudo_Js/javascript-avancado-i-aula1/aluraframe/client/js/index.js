@@ -34,6 +34,7 @@ document.querySelector('.form').addEventListener('submit',function(event){
     tBody.appendChild(tr);
 
 
+    //Reinicia os campos com esses valores padores
     campos[0].value = '';
     campos[1].value = 0;
     campos[2].value = 0;
