@@ -45,3 +45,8 @@
     --> Acessa a classe do seletor, como se fosse um arry
 
         document.querySelectorAll('selector').classList[Indice]
+
+    --> Acessa cada elemento do arry e faz a execucao da funcao 
+        passada para cada elemento e devolve o arry com essa operacao
+
+        arry.map();
