@@ -50,3 +50,37 @@
         passada para cada elemento e devolve o arry com essa operacao
 
         arry.map();
+
+    --> o comando ao lado da classe 'extends', vai a heranca da classe
+
+        class filha extends pai{}
+
+
+
+    *Jquery*
+
+    -->Para acessar um elemento do html, podemos usar
+
+        let a = jquery("Tipo"); or let a = $("Tipo")
+
+    --> Pega o texto no elemento, tag
+
+        let a = $("Tipo").text();
+
+    --> Se passar um valor nesse text, ele vai trocar o conteuno no que tem no html
+        
+        let a = $('Tipo').text("nome");
+
+    --> Trabalhando com eventos, on()
+
+        $('button').on("evento",funcao); ex(input,click, etc)
+
+    --> O comando val(), pega o valor de um input, como o text() faz, e tambem pode mudar o valor
+
+        let a = $('tipo').val();
+
+    --> O comando setinterval(), faz voce fazer algom em tanto tempo
+    
+    --> O comando attr(), pode pegar ou adcionar elementos a minha tag
+
+    --> O comando one(), faz a mesma coisa que o on(), so que apenas uma vez
