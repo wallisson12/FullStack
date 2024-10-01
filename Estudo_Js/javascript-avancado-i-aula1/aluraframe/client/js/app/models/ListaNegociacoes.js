@@ -12,7 +12,7 @@ class ListaNegociacoes
 
     ToAddNegociacaoList(negociacao)
     {
-        //O push no arry permite adcionar elementos no arry
+        //O push no arry permite adcionar elementos no arry na ultima posicao
         this._negociacoes.push(negociacao);
     }
 
