@@ -1,11 +1,12 @@
-class NegociacoesView
+class NegociacoesView extends View
 {
     constructor(element)
     {
-        this._element = element; 
+        //Referenciando a superclasse, ou seja a classe pai
+        //Passando para o construtor da super
+        super(element);
     }
-
-    _template(modelo)
+    _template(model)
     {
         return `
             <table class="table table-hover table-bordered">
@@ -20,7 +21,7 @@ class NegociacoesView
                 
                 <tbody>
                 </tbody>
-                    ${modelo.negociacao.map((n) =>{
+                    ${model.negociacao.map((n) =>{
                         
                         //O join, faz a juncao de todos os elementos do meu arry (uma string)
                         return `
@@ -44,7 +45,7 @@ class NegociacoesView
                                 (function()
                                     {
                                         let total = 0;
-                                        modelo.negociacao.forEach(element => total += element.GetVolume())
+                                        model.negociacao.forEach(element => total += element.GetVolume())
                                             return total;                                                                     
                                     })()
 
@@ -53,11 +54,5 @@ class NegociacoesView
                 </tfoot>
             </table>
         `;
-    }
-
-    Update(modelo)
-    {
-        //Esse innerHTML, faz com que a string, caso estiver com a formatacao certa, vire elemento do dom
-        this._element.innerHTML = this._template(modelo);
     }
 }
