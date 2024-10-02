@@ -11,6 +11,8 @@ $(document).ready(function()
     AtualizaTamnahoFrase();
     InicializaContador();
     InicializaConometro();
+    VerificaTextoDigitado()
+
     
     //Outra maneira de chamar o evento de click
     botaoReiniciar.click(ReiniciaGame);
@@ -63,10 +65,13 @@ function InicializaConometro()
             
             let current = contadorSegundos--;
             $("#contador-segundos").text(current);
-    
+
+                //Jogo finaliza
                 if(current < 1)
                 {
                     botaoReiniciar.removeAttr('disabled');
+
+                    campo.addClass('campo-desativado');
 
                     //Adciono um elemento na minha tag html e ja pasa o valor
                     campo.attr("disabled",true);
@@ -77,6 +82,33 @@ function InicializaConometro()
     
         },1000)
     
+    });
+}
+
+
+function VerificaTextoDigitado()
+{
+    let frase = $('.frase').text();
+    
+    campo.on("input",function()
+    {
+        let digitado = campo.val();
+    
+        //Responsavel por pega um pedaco da string comecando de um ponto ate o outro
+        //Vai comparar do comeco ate onde consiguiu digitar
+        let comparavel = frase.substr(0,digitado.length);
+    
+        if(digitado === comparavel)
+        {
+            //O toggle faz a mesma coisa que o add e remove
+            campo.addClass('campo-correto');
+            campo.removeClass('campo-errado');
+        }
+        else
+        {   
+            campo.addClass('campo-errado');
+            campo.removeClass('campo-correto');
+        }
     });
 }
 
@@ -98,6 +130,11 @@ function ReiniciaGame()
 
     //Voltando a contabilizar o tempo    
     InicializaConometro();
+
+    //Voltando o css
+    campo.removeClass('campo-desativado');
+    campo.removeClass('campo-correto');
+    campo.removeClass('campo-errado');
 }
 
 

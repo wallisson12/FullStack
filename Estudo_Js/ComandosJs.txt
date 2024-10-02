@@ -90,4 +90,12 @@
     --> O comando $(document).ready(function(){}), é chamada quando a pagina ja esta pronta
         obs: Uma outra maneira de usar, $(function(){logica}), vai possuir o mesmo resultado
 
-        
+    --> O comando $('elemento').css("elemento css","valor desse elemento"), esse vai no css desse elemento
+        e vai colocar esse estilo na tag
+
+        obs: Posso fazer de outra maneira que é, $('elemento').addclass('NomeDaClasseNoCss')
+            vai adcionar essa classe de estilo nessa tag
+
+    --> O comando removeClass('NomeDaClasseNoCss'), remove a classe da tag
+
+    --> 

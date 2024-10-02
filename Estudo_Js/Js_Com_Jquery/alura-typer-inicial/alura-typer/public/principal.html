@@ -3,28 +3,57 @@
     <head>
         <meta charset="UTF-8">
         <title>Alura Typer</title>
+
+        <link rel="stylesheet" href="css/libs/materialize.min.css">
+        <link rel="stylesheet" href="css/libs/google-fonts.css">
+        <link rel="stylesheet" href="css/estilos.css"> 
+
     </head>
 
+
     <body>
-
-        <h1>Jogo</h1>
-
-        <p class="frase">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, quos voluptas nobis neque harum animi molestias provident aliquam doloremque sed magni sapiente qui, maiores ipsam quae pariatur repellat expedita quibusdam?</p>
         
-        <ul class="informacoes">
-            <li><span id="tamanho-frase"></span> Palavras</li>
-            <li><span id ="contador-segundos">6</span> Segundos</li>
-        </ul>
+        <div class="container">
 
+            <h1 class="center">Jogo</h1>
+    
+            <p class="frase center">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Temporibus, quos voluptas nobis neque harum animi molestias provident aliquam.</p>
+            
+            <ul class="informacoes center">
 
-        <textarea class="texto-digitacao" rows="8" cols="80" ></textarea>
+                <li>
+                    <i class="small material-icons icones">description</i>
+                    <span id="tamanho-frase"></span> Palavras
+                </li>
 
-        <ul>
-            <li><span id="contador-caracteres">0</span> caracters</li>
-            <li><span id="contador-palavras">0</span> palavras</li>
-        </ul>
+                <li>
+                    <i class="small material-icons icones">query_builder</i>
+                    <span id ="contador-segundos">8</span> Segundos
+                </li>
+            </ul>
+            
+    
+            <textarea class="texto-digitacao" rows="8" cols="80" ></textarea>
+    
+            <ul class="center">
 
-        <button id="botao-reiniciar">Reiniciar</button>
+                <li>
+                    <span id="contador-caracteres">0</span> caracters
+                </li>
+                
+                <li>
+                    <span id="contador-palavras">0</span> palavras
+                </li>
+
+            </ul>
+            
+            <div class="botoes">
+                <a class="btn-floating btn-large waves-effect waves-light red" id="botao-reiniciar" >
+                    <i class="material-icons">replay</i>
+                </a>
+            </div>
+        </div>
 
 
         <script src="js/jquery.js"></script>
