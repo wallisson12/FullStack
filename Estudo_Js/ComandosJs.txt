@@ -73,7 +73,7 @@
 
     --> Trabalhando com eventos, on()
 
-        $('button').on("evento",funcao); ex(input,click, etc)
+        $('button').on("TipoEvento",funcao); ex(input,click, etc)
 
     --> O comando val(), pega o valor de um input, como o text() faz, e tambem pode mudar o valor
 
@@ -83,4 +83,11 @@
     
     --> O comando attr(), pode pegar ou adcionar elementos a minha tag
 
+    --> O comando removeAttr(), faz a remocao do elemento da tag do html
+
     --> O comando one(), faz a mesma coisa que o on(), so que apenas uma vez
+
+    --> O comando $(document).ready(function(){}), é chamada quando a pagina ja esta pronta
+        obs: Uma outra maneira de usar, $(function(){logica}), vai possuir o mesmo resultado
+
+        
