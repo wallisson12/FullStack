@@ -91,7 +91,7 @@
         obs: Uma outra maneira de usar, $(function(){logica}), vai possuir o mesmo resultado
 
     --> O comando $('elemento').css("elemento css","valor desse elemento"), esse vai no css desse elemento
-        e vai colocar esse estilo na tag
+        e vai colocar esse estilo na tag, so passando o primeiro parametro ele retorna o css 
 
         obs: Posso fazer de outra maneira que é, $('elemento').addclass('NomeDaClasseNoCss')
             vai adcionar essa classe de estilo nessa tag
