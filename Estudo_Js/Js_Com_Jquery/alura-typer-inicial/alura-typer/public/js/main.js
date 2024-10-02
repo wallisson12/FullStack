@@ -12,8 +12,8 @@ $(document).ready(function()
     InicializaContador();
     InicializaConometro();
     VerificaTextoDigitado()
+    InserePlacar();
 
-    
     //Outra maneira de chamar o evento de click
     botaoReiniciar.click(ReiniciaGame);
 
@@ -69,13 +69,8 @@ function InicializaConometro()
                 //Jogo finaliza
                 if(current < 1)
                 {
-                    botaoReiniciar.removeAttr('disabled');
-
-                    campo.addClass('campo-desativado');
-
-                    //Adciono um elemento na minha tag html e ja pasa o valor
-                    campo.attr("disabled",true);
-    
+                    FinalizaGame();
+                    
                     //Paro a execucao do update
                     clearInterval(id);
                 }
@@ -112,6 +107,40 @@ function VerificaTextoDigitado()
     });
 }
 
+
+function FinalizaGame()
+{
+    botaoReiniciar.removeAttr('disabled');
+    
+    campo.addClass('campo-desativado');
+    
+    //Adciono um elemento na minha tag html e ja pasa o valor
+    campo.attr("disabled",true);
+    
+    InserePlacar();
+}
+
+function InserePlacar()
+{
+    //Vai procurar algum elemento na tag
+    let corpoTabela = $('.placar').find('tbody');
+    
+    let usuario = "wa";
+    let numPalavras = $('#contador-palavras').text();
+
+    let linha = `
+        <tr>
+            <td>${usuario}</td>
+            <td>${numPalavras}</td>
+        </tr>
+    `;
+
+    //O metodo append faz a implantacao de uma string que segue o modelo de html em uma tag
+    //apropriada (Tipo o innerHTML)
+
+    corpoTabela.append(linha);
+    
+}
 
 function ReiniciaGame()
 {
