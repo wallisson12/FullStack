@@ -1,5 +1,5 @@
 
-const contadorValorInicial = $("#contador-segundos").text();
+let contadorValorInicial = $("#contador-segundos").text();
 let campo = $('.texto-digitacao');
 let contadorPalavras = $('#contador-palavras');
 let contadorCaracters = $('#contador-caracteres');
@@ -11,7 +11,7 @@ $(document).ready(function()
     AtualizaTamnahoFrase();
     InicializaContador();
     InicializaConometro();
-    VerificaTextoDigitado()
+    VerificaTextoDigitado();    
 
     //Outra maneira de chamar o evento de click
     botaoReiniciar.click(ReiniciaGame);
@@ -29,6 +29,13 @@ function AtualizaTamnahoFrase()
     //Adcionando o tamanho
     let numeroPalavras = texto.split(' ').length;
     tamanhoFraseTxt.text(numeroPalavras);
+}
+
+function AtualizaTempoInicial(tempoInicial)
+{
+
+    $('#contador-segundos').text(tempoInicial);
+    contadorValorInicial = tempoInicial;
 }
 
 function InicializaContador()
@@ -50,11 +57,11 @@ function InicializaContador()
 
 
 function InicializaConometro()
-{
-    let contadorSegundos = $("#contador-segundos").text();
-    
+{  
     //Vai ser chamado uma vez
     campo.one("focus",function(){
+        
+        let contadorSegundos = $("#contador-segundos").text();
     
         //Habilita o botao de reiniciar
         botaoReiniciar.attr('disabled',true);
@@ -82,10 +89,10 @@ function InicializaConometro()
 
 function VerificaTextoDigitado()
 {
-    let frase = $('.frase').text();
     
     campo.on("input",function()
     {
+        let frase = $('.frase').text();
         let digitado = campo.val();
     
         //Responsavel por pega um pedaco da string comecando de um ponto ate o outro

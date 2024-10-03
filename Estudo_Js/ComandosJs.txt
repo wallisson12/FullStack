@@ -98,4 +98,13 @@
 
     --> O comando removeClass('NomeDaClasseNoCss'), remove a classe da tag
 
-    --> 
+    --> Com o comando $('<tr>'), podemos criar elementos de html com js
+
+    --> Com o comando $(this).parent().parent().remove(), posso subir na arvore de tags e remover o pai  
+        obs: esse this é o objeto que foi clicado e estou subindo ate o pai para retirar a linha
+    
+    --> O comando append() e prepend(), sempre parar inserir elementos html dentro de outros elementos
+
+*Ajax*
+
+--> Permite realizar requisicoes assincronas para o o servidor

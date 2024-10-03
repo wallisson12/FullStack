@@ -1,3 +1,5 @@
+$('#botao-placar').click(MostraPlacar);
+
 
 function InserePlacar()
 {
@@ -10,18 +12,15 @@ function InserePlacar()
     let linha = NovaLinha(usuario,numPalavras);
     
     //Funcao para remover linha
-    linha.find(".botao-remover").click(function(event)
-        {
-            //Pega o obejto que foi clicado e envolve ele para ser um dom
-            //Para poder ter acesso a metodos do jquery
-            $(this).parent().parent().remove();   
-        });
+    linha.find(".botao-remover").click(RemoveLinha)
 
 
     //O metodo append faz a implantacao de uma string que segue o modelo de html em uma tag
     //apropriada (Tipo o innerHTML)  
     corpoTabela.append(linha);
-    
+
+    $('.placar').slideDown(500);
+    ScrollPlacar();
 }
 
 function NovaLinha(usuario,palavras)
@@ -45,4 +44,42 @@ function NovaLinha(usuario,palavras)
     
     return linha;
 
+}
+
+function RemoveLinha()
+{
+    //Pega o obejto que foi clicado e envolve ele para ser um dom
+    //Para poder ter acesso a metodos do jquery
+    let linha = $(this).parent().parent();
+    let TimeFade = 1000;
+
+    linha.fadeOut(TimeFade);   
+
+    //Vai esperar o tempo para executar a logica 
+    setTimeout(() => {
+
+        linha.remove();
+
+    }, TimeFade);
+}
+
+
+function MostraPlacar()
+{
+    //Pode ser substituido por show()
+    //$('.placar').css("display","block");
+    //Ou posso usar a toggle()
+    $('.placar').stop().slideToggle(600);
+}
+
+function ScrollPlacar()
+{
+     //Pegando a posicao da tag plcar
+     let posicaoPlacar = $('.placar').offset().top;
+
+     //Fazendo a animacao do corpo da pagina
+     //Passanmdo o tempo que a animcao via durar
+     $('body').animate({
+         scrollTop: posicaoPlacar+"px"
+     },1000);
 }
