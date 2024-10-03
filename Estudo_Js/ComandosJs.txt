@@ -107,4 +107,8 @@
 
 *Ajax*
 
---> Permite realizar requisicoes assincronas para o o servidor
+    --> Permite realizar requisicoes assincronas para o o servidor
+
+    --> Faz a requisicao assincrona em um banco e retorna os dados dela
+        
+        $.get("URL",function(data){})
