@@ -40,3 +40,24 @@ body
 {
     overflow: scroll;
 }
+
+#erro
+{
+    color: red;
+    display: none;
+}
+
+#spinner
+{
+    display: none;
+}
+
+#frase-id
+{
+    width: 80px;
+}
+
+#botao-syn
+{
+    float: right;
+}

@@ -79,7 +79,7 @@
 
         let a = $('tipo').val();
 
-    --> O comando setinterval(), faz voce fazer algom em tanto tempo
+    --> O comando setinterval(), faz voce fazer algo em tanto tempo
     
     --> O comando attr(), pode pegar ou adcionar elementos a minha tag
 
@@ -112,3 +112,31 @@
     --> Faz a requisicao assincrona em um banco e retorna os dados dela
         
         $.get("URL",function(data){})
+
+    --> Verifica se a requisicao foi sucesso ou nao
+
+        $.get("URL",function(data){}).fail(function(){})
+
+    --> Executa a funcao mesmo se for um sucesso ou nao
+
+        $.get("URL",funcion(data){}).always();
+
+    --> Passando dados na requisicao
+        obs: esse paramentro dados, eh um objeto do js, caso de certo retorna o dado da requisicao
+
+        $.get("URL",dados,funcion(data){});
+
+    --> Para enviar os dados(que tem que seguir a estrutura que ja tem la,
+        e precisa ser um objeto do js) para o servedor
+
+        $.post("URL",dados,funcion(){})
+
+    --> A funcao setTimeOut(function(){},TempoParaExecutar), so vai ser executada, quando o tempo,
+        passado como paramentro se esgotar 
+    
+
+
+
+    **Lembrar de fazer a questao do nome do usuario e mensagem caso a sincronizacao foi sucedida**
+
+

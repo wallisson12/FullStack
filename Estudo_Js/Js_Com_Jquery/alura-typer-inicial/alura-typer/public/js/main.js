@@ -12,6 +12,7 @@ $(document).ready(function()
     InicializaContador();
     InicializaConometro();
     VerificaTextoDigitado();    
+    AtualizaPlacar();
 
     //Outra maneira de chamar o evento de click
     botaoReiniciar.click(ReiniciaGame);
