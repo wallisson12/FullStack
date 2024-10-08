@@ -30,4 +30,16 @@
 
     obs: Sao exemplos de caracteres especiais
 
---> 
+--> Operador ternario
+
+    $variavel = $condicao ? $valorSeVerdadeiro : $valorSeFalso;
+
+--> Estrutura de repeticao Switch e o match
+
+    obs: O match faz a mesma coisa so que o switch, so que eh mais utilizado
+
+--> Possui for e foreach
+
+--> Possui o 'break' e 'continue'
+
+    obs: o break, para a execucao, o continue, pula para a proxima interracao
