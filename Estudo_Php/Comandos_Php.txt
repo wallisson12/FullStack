@@ -1,0 +1,33 @@
+**Comandos**
+
+-->O comando echo ""; serve para imprimir algo na tela
+
+    echo ""; 
+
+--> Variaveis em php
+
+    $Idade = 23;
+
+--> O comando Gettype(Variavel), ele vai retornar o tipo da variavel passada como paramentro
+
+--> O comando para fazer a concatenacao eh: .
+
+    echo 'Minha idade eh: ' . $idade;
+
+    obs: Outra maneira eh utilizando "" e $idade;
+
+    echo "Minha idade eh: $idade"
+
+--> Quebra de linha
+
+    echo "teste\n"; ou echo 'teste' . PHP_EOL
+    echo 'Outra linha sem pular';
+
+--> Tab
+
+    echo "teste \n";
+    echo "\t Outra linha sem pular";
+
+    obs: Sao exemplos de caracteres especiais
+
+--> 
