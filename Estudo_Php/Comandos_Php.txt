@@ -84,10 +84,49 @@
 
     obs: O indice do arry so pode ser int ou string
 
---> Adcionando um elemento na ultipa posicao do arry
+--> Adcionando um elemento na ultima posicao do arry
 
-    arry[] = 20;    
+    $arry[] = 20;    
 
     obs: Quando nao passamos nada no indice, ele vai adcionar na ultima posicao
 
---> 
+--> Removendo elemento de um array
+
+    unset($arry[2]);
+
+--> Estrutura basica de uma funcao, os paramentros sempre com '$'
+
+    function ShowNome($nome){}
+
+    Obs: Posso especificar qual o tipo do dado do paramentro e o que ela retorna 
+
+    function WithDraw(float $valor) : float
+    {....}
+
+--> Interpolacao, com tipo mais complexos, utilizamos {}
+
+    "$cpf {$conta['titular']  {$conta['saldo']}}"
+
+--> Incluindo arquivos externos
+
+    include 'Nome Do Arquivo'; 
+
+            ou
+
+    require_once'Nome Do Arquivo'; //Se for essencial para o funcionamento e verifica se foi chamando mais de uma vez
+
+--> O comando strtoupper(), permite deixar as letras em maiusculo
+
+--> A clausura &, permite acessar o valor guardado na memoria, como 'c', acessando por referencia
+
+--> O comando list(), faz com que adcione cada elemento do arry para uma variavel
+
+    //O elemento da posicao 0 vai para variavel_1, o elemento da posicao 1 vai para a variavel_2 ...
+    list($variavel_1,$variavel_2,$variavel_3) = array
+    
+    ou
+
+    ['titular' => $titular, 'saldo' => $saldo] = $conta;
+
+-->
+
