@@ -128,5 +128,14 @@
 
     ['titular' => $titular, 'saldo' => $saldo] = $conta;
 
--->
+
+**Php Poo**
+
+--> Para acessar pripriedades de um objeto, usamos '->'
+
+    obs: Quando for acessar a propriedade, nao precisa colocar o '$'
+
+--> var_dump($obj), mostra o objeto
+
+--> O metodo arry_sum(), realiza a soma dos elementos do array
 
