@@ -139,3 +139,32 @@
 
 --> O metodo arry_sum(), realiza a soma dos elementos do array
 
+--> O construtor tem que possuir '__' 
+
+--> Se quiser posso definir as propriedades no construtor
+
+    construtor(private string $nome,....){...}
+
+--> Possui o tipo readonly
+
+--> Declaracao de enum
+
+    enum Genero{   
+        case Acao;
+        case Comedia;
+        case Terror;
+        case Drama;
+    }
+
+    Genero $teste = Genero::Acao;
+
+--> Para acessar elementos estaticos 'self::$MembroEstatico'
+
+--> Para herdar de uma classe, extends
+
+--> Para referenciar o pai 'parent::'
+
+--> Possui tambem 'override' e 'protected'
+
+--> Possui classes abstratas, ou seja, so permite herdar dela nao instanciar
+

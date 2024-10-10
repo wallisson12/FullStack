@@ -1,28 +1,22 @@
 <?php
 
-class Filme 
+class Filme extends Titulo
 {
     //Variaveis com modificar de acesso
-    public string  $nome;
-    public string  $genero;
-    public int $anoLancamento = 0;
-    public array $notas = [];
-
+    //O tipo readonly voce so pode atribuir apenas uma vez
+    private int $_duracaoMinutos;
+    //Construtor
+    public function __construct(string $nome,Genero $genero,int $anoLancamento,int $duracaoMinutos)
+    {
+        //Uma referencia para o constructor da classe pai
+        parent::__construct($nome,$genero,$anoLancamento);
+        $this->_duracaoMinutos = $duracaoMinutos;
+    }
     
-    //Metodos
-    function AvaliaFilme(float $nota) : void
+    
+    
+    public function DuracaoEmMinutos():int
     {
-       $this->notas[] = $nota;
+        return $this->_duracaoMinutos;
     }
-
-    function MediaFilme() : float
-    {
-        $somaNotas = array_sum($this->notas);
-        $quantidade = count($this->notas);
-
-        return $somaNotas/$quantidade;    
-    }
-
-
-
 }
