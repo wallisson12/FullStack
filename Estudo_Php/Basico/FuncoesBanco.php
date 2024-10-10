@@ -36,9 +36,10 @@ function Deposit(array $conta, float $valor) : array
 }
 
 
-function RemoveAccount(array &$list,array $conta)
+function RemoveAccount(array &$list,string $i)
 {
     //Verificar se a conta existe e depois remover ja passando o novo array
+    
 }
 
 //Pegando a referencia na memoria da conta, ou seja, passando por referencia

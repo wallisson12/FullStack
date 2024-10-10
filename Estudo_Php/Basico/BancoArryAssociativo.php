@@ -36,7 +36,7 @@ $contaCorrente['222'] = Deposit($contaCorrente['222'],100);
 //LettersUp($contaCorrente['333']);
 
 //Removendo conta
-RemoveAccount($contaCorrente,$contaCorrente['333']);
+RemoveAccount($contaCorrente,'333');
 
 
 foreach ($contaCorrente as $cpf => $conta) 
