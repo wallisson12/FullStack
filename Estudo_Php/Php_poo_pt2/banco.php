@@ -1,14 +1,18 @@
 <?php
 
-require_once 'src/Conta.php';
-require_once 'src/Endereco.php';
-require_once 'src/Titular.php';
-require_once 'src/CPF.php';
+require_once 'AutoLoad.php';
 
-$endereco = new Endereco("um lugar","24","uma rua legal",
+use Alura\Banco\Modelo\{CPF,Endereco};
+use Alura\Banco\Modelo\Conta\Titular;
+use Alura\Banco\Modelo\Conta\{ContaPoupanca,ContaCorrente};
+
+
+
+
+$enderecoo = new Endereco("um lugar","24","uma rua legal",
                         "um endereco","bairoo");
 
-$vinicius = new Titular(new CPF('123.456.789-10'), 'Vinicius Dias',$endereco);
+$vinicius = new Titular('Vinicius Dias',new CPF('123.456.789-10'),$enderecoo);
 $primeiraConta = new Conta($vinicius);
 $primeiraConta->deposita(500);
 $primeiraConta->saca(300); // isso é ok
@@ -19,12 +23,12 @@ echo $primeiraConta->recuperaCpfTitular() . PHP_EOL;
 echo $primeiraConta->recuperaSaldo() . PHP_EOL;
 
 
-$patricia = new Titular(new CPF('698.549.548-10'), 'Patricia',$endereco);
+$patricia = new Titular('Patricia',new CPF('698.549.548-10'),$enderecoo);
 $segundaConta = new Conta($patricia);
 var_dump($segundaConta);
 
 $outroEndereco = new Endereco("A","2","b","c","d");
 
-$outra = new Conta(new Titular(new CPF('123.654.789-01'), 'Abcdefg',$endereco));
+$outra = new Conta(new Titular('Abcdefg',new CPF('123.654.789-01'),$outroEndereco));
 unset($segundaConta);
 echo Conta::recuperaNumeroDeContas();

@@ -168,3 +168,29 @@
 
 --> Possui classes abstratas, ou seja, so permite herdar dela, nao instanciar
 
+--> Possui 'namespaces'
+
+    obs: Para usar o namespace, usamos a palavra 'use' e o caminho do namespace
+
+--> AutoLod, uma ferramenta para subistituir o 'required'
+
+    obs: com spl_autoload_requister(function(string $nomeCompletoDaClasse){...});
+
+    ex: //vai ser disparado assim quer eu tentar acessar uma classe
+        //E vai retornar no paramentro da funcao o caminho onde ela esta
+        spl_autoload_register(function ($class) {
+
+            //Vai retornar o caminho do arquivo da classe que quero acessar
+            //Vai fazer a troca para colocar 'src' da minha pasta e .php
+            //E uma maneira dinamica de fazer o required
+            $caminho = str_replace('Alura\\Banco', 'src', $class) . '.php';
+
+            //Verificando se o caminho vai ser verdadeiro
+            if(file_exists($caminho))
+            {
+                //Fazendo o required do caminho dinamicamente
+                require_once $caminho;
+            }
+        });
+
+--> Quando voce possui um metodo abstrato na classe, a classe tem que ser abstrata
