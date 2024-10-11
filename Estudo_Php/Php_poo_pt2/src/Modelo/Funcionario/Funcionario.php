@@ -3,7 +3,7 @@
 //Proprio namespace
 namespace Alura\Banco\Modelo\Funcionario;
 
-//Trazendo a o namespaconde as classes que preciso estao
+//Trazendo os namespaces onde as classes que preciso estao
 use Alura\Banco\Modelo\CPF;
 use Alura\Banco\Modelo\Pessoa;
 

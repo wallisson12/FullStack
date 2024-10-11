@@ -194,3 +194,11 @@
         });
 
 --> Quando voce possui um metodo abstrato na classe, a classe tem que ser abstrata
+
+--> Ordem de namespace
+
+    Proprio namespace
+
+    AutoLoad
+
+    Chamando os namespaces para usar as classes que preciso
