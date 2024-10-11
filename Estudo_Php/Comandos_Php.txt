@@ -160,11 +160,11 @@
 
 --> Para acessar elementos estaticos 'self::$MembroEstatico'
 
---> Para herdar de uma classe, extends
+--> Para herdar de uma classe, 'extends'
 
 --> Para referenciar o pai 'parent::'
 
 --> Possui tambem 'override' e 'protected'
 
---> Possui classes abstratas, ou seja, so permite herdar dela nao instanciar
+--> Possui classes abstratas, ou seja, so permite herdar dela, nao instanciar
 
