@@ -1,0 +1,16 @@
+{
+    "name": "wallisson12/buscador_cursos",
+    "description": "Busca os cursos da alura",
+    "type": "library",
+    "authors": [
+        {
+            "name": "wallisson12",
+            "email": "wallisson_wjc@outlook.com.br"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.9",
+        "symfony/dom-crawler": "^7.1",
+        "symfony/css-selector": "^7.1"
+    }
+}

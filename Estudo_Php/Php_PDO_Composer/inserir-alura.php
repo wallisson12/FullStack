@@ -17,4 +17,4 @@ $slqInsert = "Insert into students (name,brith_date) values
 echo "{$slqInsert}";
 
 //Executa um comando sql e retorna o numero de linhas afetadas
-var_dump($pdo->exec($slqInsert));
+//var_dump($pdo->exec($slqInsert));
