@@ -1,10 +1,13 @@
 <?php
 
-use Alura\Pdo\Domain\Model\Student;
-use Alura\Pdo\Infrastructure\Persistence\connectionCreator;
-
 require_once 'vendor/autoload.php';
 
+use Alura\Pdo\Domain\Model\Student;
+use Alura\Pdo\Infrastructure\Persistence\connectionCreator;
+use Alura\Pdo\Infrastructure\Repository\PdoStudentRepository;
+
+
+/*
 $pdo = connectionCreator::createConnection();
 
 //Fazendo a busca e retronando um objeto pdostatement, onde possui algums metodos
@@ -27,5 +30,14 @@ foreach($studentList as $student)
 }
 
 var_dump($listS);
+*/
+
+//Modelo mais otimizado
+$pdo = ConnectionCreator::createConnection();
+$repository = new PdoStudentRepository($pdo);
+
+$studentList = $repository->allStudents();
+
+var_dump($studentList);
 
 
