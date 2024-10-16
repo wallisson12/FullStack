@@ -269,3 +269,18 @@
 
     //Esecutando o comando, retorna true ou false
     $statment->execute();
+
+--> Fazendo o mapeamento do autoload utilizando a psr-4
+    obs:Mapeando o namespace para o src
+
+        "autoload":{
+            "psr-4": {
+                "Alura\\BuscadorDeCursos\\": "src/"
+            }
+        }
+
+  obs: Posso utilizar o 'classmap' tambem, se estiver em um codigo legado e nao utilizaram o psr-4, './', diretorio atual
+  obs2: Caso for uma funcao, posso utilizar o 'file'
+
+-->
+

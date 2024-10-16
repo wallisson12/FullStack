@@ -1,7 +1,6 @@
 <?php
 
 require_once 'vendor/autoload.php';
-require_once 'src/Buscador.php';
 
 
 use Alura\BuscadorDeCursos\Buscador;
