@@ -176,20 +176,25 @@
 
     obs: com spl_autoload_requister(function(string $nomeCompletoDaClasse){...});
 
-    ex: //vai ser disparado assim quer eu tentar acessar uma classe
+         ex: //vai ser disparado assim quer eu tentar acessar uma classe
         //E vai retornar no paramentro da funcao o caminho onde ela esta
-        spl_autoload_register(function ($class) {
+
+        spl_autoload_register(function (string $nomeCompletoDaClasse) {
 
             //Vai retornar o caminho do arquivo da classe que quero acessar
             //Vai fazer a troca para colocar 'src' da minha pasta e .php
-            //E uma maneira dinamica de fazer o required
-            $caminho = str_replace('Alura\\Banco', 'src', $class) . '.php';
+            //É uma maneira dinamica de fazer o required
 
-            //Verificando se o caminho vai ser verdadeiro
-            if(file_exists($caminho))
-            {
+            $caminhoArquivo = str_replace('Alura\\Banco', 'src', $nomeCompletoDaClasse);
+            $caminhoArquivo = str_replace('\\', DIRECTORY_SEPARATOR, $caminhoArquivo);
+            $caminhoArquivo .= '.php';
+
+             //Verificando se o caminho vai ser verdadeiro
+
+            if (file_exists($caminhoArquivo)) {
+                
                 //Fazendo o required do caminho dinamicamente
-                require_once $caminho;
+                require_once $caminhoArquivo;
             }
         });
 
@@ -202,3 +207,65 @@
     AutoLoad
 
     Chamando os namespaces para usar as classes que preciso
+
+--> Suporta interface, onde por padrao todos os metodos dele sao abstratos
+
+    interface Autenticavel
+    {
+        public function podeAutenticar(string $senha): bool;
+    }
+
+    obs: Para uma classe implementar uma interface, 'NomeDaClasse implement NomeDaInterface'
+
+--> O metodo __toString, eh chamado toda vez que usamos o objeto da classe como uma string
+
+--> O metodo __get, eh chamado quando queremos chamar um atributo da classe, como se fosse um getter
+    no entanto, ou nao existe, ou eh privado.
+
+--> Uma maneira de impedir a heranca, 'final', permitido para classe e para metodo, impedindo a sobreescricao
+
+--> 'Trait', uma forma de voce injetar codigo em uma classe, para usar uma Trait,
+    usamos, 'use' NomeDaTrait, dentro da classe que voce quer utilizar ela
+
+**Php com Composer e PDO**
+
+--> O composer eh um gerenciador de dependencias, onde posso criar e utilizar varias bibliotecas
+
+--> Na pasta onde possui o composer, utilizar esse comando: composer dump-autoload
+
+--> O Pdo, é uma forma de fazer o acesso ao banco de dados, onde ele possui varios drives para poder se conectar ao banco
+    obs: Orm, uma forma de voce se conectar ao banco e fazer consultas usando o php
+
+        - Fazendo a conecao com o banco, passando a string de conecao
+
+    ex:     $caminhoBanco = __DIR__ ."/banco.sqlite";
+            $pdo = new PDO('sqlite:' . $caminhoBanco);
+
+--> O comando, executa um comando sql e retorna o numero de linhas afetadas
+
+    $pdo->exec('Comando sql');
+
+--> O comando, faz uma query no banco trazendo infromacoes, o fecthAll, eh uma maneira como esses objetos sao mostrados
+    existem varios tipos de fecthAll, passando como paramentro.
+    
+    $obj = $pdo->query('Selecao de dados');
+    $obj->fetchALL();
+
+--> Para buscar um unico resultado usamos, quando temos variaos dados, para nao estourar a memoria
+
+    $obj = $pdo->query('Selecao de dados, com apenas um caso');
+    $obj->fecth(PDO::fecth_Assoc);
+    
+--> Para fungir de determinados erros, e segurança, podemos antes de fazer a execucao, fazer a preparacao
+
+    $sqlInsert = "insert into students (...) values (...)";
+
+    //Fazendo a preparacao
+    $statment = $pdo->prepare($sqlInsert);
+
+    //Bind dos valores em cada paramentro do objeto, e como terceiro paramentro o tipo
+    $statment->bindValue(1'Primeiro paramentro',$student->name());
+    $statment->bindValue(2'Segundo parametro',$student->brithDate()->format('Y-m-d'));
+
+    //Esecutando o comando, retorna true ou false
+    $statment->execute();
