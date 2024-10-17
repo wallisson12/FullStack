@@ -1,19 +1,16 @@
 <?php
 
-    //trazendo o codigo de conecao com o banco
-    require_once "src/conexao_db.php";
+    require "src/conexao-bd.php";
+    require "src/Modelo/Produto.php";
+    require "src/Repositorio/ProdutoRepositorio.php";
 
-    //Fazendo as consultas no banco
-    $SQL1 = "SELECT * FROM produtos WHERE tipo = 'Café' ORDER BY preco ";
-    $stdment = $pdo->query($SQL1);
-    $produtosCafe = $stdment->fetchAll(PDO::FETCH_ASSOC);
+    $produtosRepositorio = new ProdutoRepositorio($pdo);
+    $dadosCafe = $produtosRepositorio->opcoesCafe();
+    $dadosAlmoco = $produtosRepositorio->opcoesAlmoco();
 
-    $SQL2 = "SELECT * FROM produtos WHERE tipo = 'Almoço' ORDER BY preco ";
-   $stdment2 =  $pdo->query($SQL2);
-   $produtosAlmoco = $stdment2->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
-
 
 <!doctype html>
 <html lang="pt-br">
@@ -22,7 +19,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,9 +26,7 @@
     <link rel="icon" href="img/icone-serenatto.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <title>Serenatto - Cardápio</title>
-
 </head>
 <body>
     <main>
@@ -48,17 +42,15 @@
                 <img class= "ornaments" src="img/ornaments-coffee.png" alt="ornaments">
             </div>
             <div class="container-cafe-manha-produtos">
-                <?php foreach ($produtosCafe as $produto) : ?>
-
+                <?php foreach ($dadosCafe as $cafe):?>
                     <div class="container-produto">
                         <div class="container-foto">
-                            <img src=<?php echo 'img/'.$produto['imagem'] ?> >
+                            <img src="<?= $cafe->getImagemDiretorio() ?>">
                         </div>
-                        <p><?php echo $produto['nome']?></p>
-                        <p><?php echo $produto['descricao'] ?></p>
-                        <p><?php echo 'R$: '. $produto['preco'] ?> </p>
+                        <p><?= $cafe->getNome()?></p>
+                        <p><?= $cafe->getDescricao()?></p>
+                        <p><?= $cafe->getPrecoFormatado() ?></p>
                     </div>
-
                 <?php endforeach; ?>
             </div>
         </section>
@@ -68,18 +60,15 @@
                 <img class= "ornaments" src="img/ornaments-coffee.png" alt="ornaments">
             </div>
             <div class="container-almoco-produtos">
-
-                <?php foreach ($produtosAlmoco as $almoco) : ?>
-
+                <?php foreach ($dadosAlmoco as $almoco):?>
                     <div class="container-produto">
                         <div class="container-foto">
-                            <img src= <?php echo 'img/'.$almoco['imagem'] ?> >
+                            <img src="<?= $almoco->getImagemDiretorio()?>">
                         </div>
-                        <p><?php echo $almoco['nome'] ?></p>
-                        <p><?php echo $almoco['descricao']?></p>
-                        <p><?php echo 'R$: '.$almoco['preco'] ?></p>
+                        <p><?= $almoco->getNome()?></p>
+                        <p><?= $almoco->getDescricao()?></p>
+                        <p><?= $almoco->getPrecoFormatado() ?></p>
                     </div>
-
                 <?php endforeach; ?>
             </div>
 
