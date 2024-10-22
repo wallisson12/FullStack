@@ -282,5 +282,39 @@
   obs: Posso utilizar o 'classmap' tambem, se estiver em um codigo legado e nao utilizaram o psr-4, './', diretorio atual
   obs2: Caso for uma funcao, posso utilizar o 'file'
 
--->
+**Php Crud Pdo e Mysql**
+
+--> Conexao ao banco e passando a senha e o usuario, usando pdo e o banco mysql, habilitando no php ini, o mysql extension
+    
+    $pdo = new PDO('mysql:host=localhost;dbname=serenatto', 'root', 'Riki1824$');
+
+-->Exemplo de php com sql 
+
+	$sql = "SELECT * FROM produtos ORDER BY preco";
+        $stdment = $this->pdo->query($sql);
+        $listaProdutos = $stdment->fetchAll(PDO::FETCH_ASSOC);
+
+--> Formularios por padrao manda para a pagina atual, a acao 'action', em formularios, faz voce enviar a requisicao para o codigo no action
+--> Posso pegar os dados enviados atraves da url por $_Get e $_Post 
+--> Para usar o post, no from tenho que colocar method="post"
+
+--> Para quando o formulario ir para outro script, é so colocar o 'header', que envia um cabeçalhoo http para o navegador, redirecionando para o navegador
+	
+	header("Location: caminho.php");
+
+--> Para verificar de ja teve alguma informacao enviada pelo corpo da requesicao
+
+ //Verificando se ja exsiste alguma informacao enviada pelo corpo da requisicao, com a chave 'cadastro'
+    if(isset($_POST['cadastro']))
+    {
+        $produto = new Produto(
+            null,
+            $_POST['tipo'],
+            $_POST['nome'],
+            $_POST['descricao'],
+            $_POST['preco'],
+        );
+    }
+
+    
 
